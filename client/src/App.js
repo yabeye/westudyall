@@ -1,12 +1,29 @@
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { Login, Signup } from './pages/Auth';
+
 import './App.css';
+import { Home, LoadInit, User } from './pages';
 
 function App() {
+  const [isPageLoading, setIsPageLoading] = useState(false);
   return (
-    <div className="App">
-      <button className="bg-blue-600 hover:bg-blue-400 hover:scale-110 duration-200 text-white py-2 px-3 m-5 rounded-full">
-        Start the Project
-      </button>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        {/* Pages that don't depend by routes */}
+        {isPageLoading && <LoadInit />}
+        {/* routes */}
+        <div>
+          <Routes>
+            <Route path="/users/signup" exact element={<Signup />} />
+            <Route path="/users/login" exact element={<Login />} />
+            <Route path="/users" exact element={<User />} />
+            <Route path="/" exact element={<Home />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
