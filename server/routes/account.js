@@ -8,6 +8,9 @@ import { StatusCodes } from 'http-status-codes';
 import ModelAccount from '../models/account.js';
 import ModelUser from '../models/user.js';
 
+import auth from '../middlewares/auth.js';
+import admin from '../middlewares/admin.js';
+
 import SECURITY from '../constants/security.js';
 
 const get_ip = ipware().get_ip;
@@ -17,9 +20,7 @@ const { Account, validateAccount } = ModelAccount;
 const { User } = ModelUser;
 const { SALT_ROUND } = SECURITY;
 
-// TODO: Protect this router latter
-// TODO: only for admin
-router.get('/', async (req, res) => {
+router.get('/', [auth, admin], async (req, res) => {
   try {
     const accounts = await Account.find({});
     return res.send({ error: false, accounts });
@@ -32,13 +33,59 @@ router.get('/', async (req, res) => {
 
 // Returns the current logged in user
 // TODO: change the route to /me
-router.get('/:id', async (req, res) => {});
+router.get('/me', auth, async (req, res) => {
+  // TODO: exception handling on this route
+  const account = await Account.findById(req.account._id).select('-password');
 
-// TODO: exception handling on this route
+  if (!account) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send({ error: true, message: "A user with a given id isn't found!" });
+  }
+
+  const user = await User.find({ _id: account.userId });
+
+  let safeAccountResponse = _.pick(account, [
+    'firstName',
+    'lastName',
+    'username',
+    'email',
+    'createdAt',
+    'firstTime',
+    'accountStatus',
+    'profile',
+    'userId',
+    'role',
+    '_id',
+  ]);
+  safeAccountResponse.userId = user;
+
+  return res.send({ error: false, account: safeAccountResponse });
+});
+
 router.post('/', async (req, res) => {
+  // TODO: exception handling on this route
   // request validation validation
   const { body } = req;
-  const { error } = validateAccount(body);
+  let { firstName, lastName, username, email, password, profile } = body;
+  // (to be on the safe side )
+  firstName = firstName.trim();
+  lastName = lastName.trim();
+  username = username.trim();
+  email = email.trim();
+  // ! password -> we don't trim pass because it might start with whitespace
+  profile.bio = profile.bio.trim();
+  profile.address = profile.address.trim();
+  profile.schoolName = profile.schoolName.trim();
+
+  const { error } = validateAccount({
+    firstName,
+    lastName,
+    username,
+    email,
+    password,
+    profile,
+  });
 
   if (error) {
     return res.status(StatusCodes.BAD_REQUEST).send({
@@ -46,8 +93,6 @@ router.post('/', async (req, res) => {
       details: error.details.map((detail) => detail.message),
     });
   }
-
-  const { firstName, lastName, username, email, password, profile } = body;
 
   // To prevent users from creating too many fake accounts
   const dupUser = await Account.findOne({ email });

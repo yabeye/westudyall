@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import constants from '../constants/index.js';
 
-const account = constants.account;
+const { ACCOUNT } = constants;
 
 const accountSchema = new mongoose.Schema({
   firstName: {
@@ -48,7 +48,7 @@ const accountSchema = new mongoose.Schema({
   },
   accountStatus: {
     type: mongoose.Schema.Types.String,
-    default: account.ACCOUNT_STATUS.ACTIVE,
+    default: ACCOUNT.ACCOUNT_STATUS.ACTIVE,
   },
   profile: {
     bio: {
@@ -74,7 +74,7 @@ const accountSchema = new mongoose.Schema({
   userId: mongoose.Schema.Types.ObjectId,
   role: {
     type: mongoose.Schema.Types.String,
-    default: account.ACCOUNT_ROLE.BASIC,
+    default: ACCOUNT.ACCOUNT_ROLE.BASIC,
   },
 });
 
@@ -104,7 +104,7 @@ const Account = mongoose.model('Account', accountSchema);
 
 function validateAccount(account) {
   //customerId: Joi.objectId().required(),
-  const complexityOptions = {
+  const passwordComplexityOptions = {
     min: 8,
     max: 64,
     lowerCase: 1,
@@ -119,7 +119,7 @@ function validateAccount(account) {
     lastName: Joi.string().max(32).required(),
     username: Joi.string().max(64).required(),
     email: Joi.string().email().max(64).required(),
-    password: new JoiPC(complexityOptions),
+    password: new JoiPC(passwordComplexityOptions),
     profile: Joi.object({
       bio: Joi.string().max(64),
       address: Joi.string().max(128),
