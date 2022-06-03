@@ -1,0 +1,6 @@
+{
+  "jwtPrivateKey": "unsecureKey",
+  "db": "mongodb://localhost/westudyall",
+  "port": "7000",
+  "requiresAuth": false
+}

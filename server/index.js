@@ -2,18 +2,22 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import config from 'config';
 
 // routes
+import router from './routes/index.js';
 
 const app = express();
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
+app.use(express());
 
-// app.use('/', home) set routes
+// setting up routes
+app.use('/', router);
 
-const CONNECTION_URL = 'mongodb://localhost/westudyall';
-const PORT = process.env.PORT || 7000;
+const CONNECTION_URL = config.get('db');
+const PORT = process.env.PORT || config.get('port');
 
 mongoose
   .connect(CONNECTION_URL, {

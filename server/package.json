@@ -1,19 +1,30 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "RESTful API for we study front end made with react js",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "We Study Team",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
+    "config": "^3.3.7",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "mongoose": "^6.3.5"
+    "http-status-codes": "^2.2.0",
+    "ipware": "^2.0.0",
+    "joi": "^17.6.0",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.3.5",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
