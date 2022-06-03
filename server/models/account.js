@@ -6,9 +6,7 @@ import JoiPC from 'joi-password-complexity';
 import jwt from 'jsonwebtoken';
 
 import validator from 'validator';
-import constants from '../constants/index.js';
-
-const { ACCOUNT } = constants;
+import { ACCOUNT } from '../constants/index.js';
 
 const accountSchema = new mongoose.Schema({
   firstName: {

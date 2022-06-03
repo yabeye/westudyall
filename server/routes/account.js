@@ -5,13 +5,13 @@ import _ from 'lodash';
 
 import { StatusCodes } from 'http-status-codes';
 
-import ModelAccount from '../models/account.js';
-import ModelUser from '../models/user.js';
+// import ModelAccount from '../models/account.js';
+// import ModelUser from '../models/user.js';
+import { ModelAccount, ModelUser } from '../models/index.js';
 
-import auth from '../middlewares/auth.js';
-import admin from '../middlewares/admin.js';
+import { auth, admin } from '../middlewares/index.js';
 
-import SECURITY from '../constants/security.js';
+import { SECURITY } from '../constants/index.js';
 
 const get_ip = ipware().get_ip;
 

@@ -1,9 +1,3 @@
-import ACCOUNT from './types/account.js';
-import QUESTION from './types/question.js';
-import SECURITY from './security.js';
-
-export default {
-  ACCOUNT,
-  QUESTION,
-  SECURITY,
-};
+export { default as ACCOUNT } from './types/account.js';
+export { default as QUESTION } from './types/question.js';
+export { default as SECURITY } from './security.js';

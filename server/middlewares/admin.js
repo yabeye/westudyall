@@ -1,9 +1,7 @@
 import config from 'config';
 import { StatusCodes } from 'http-status-codes';
 
-import constants from '../constants/index.js';
-
-const { ACCOUNT } = constants;
+import { ACCOUNT } from '../constants/index.js';
 
 export default function (req, res, next) {
   if (!config.get('requiresAuth')) return next();
