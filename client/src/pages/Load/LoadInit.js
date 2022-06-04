@@ -1,11 +1,12 @@
 // The fires page that is visible while the app is loading (connecting to backend).
 import { FaGraduationCap } from 'react-icons/fa';
 
-import './LoadInit.styles.css';
+import './LoadInit.css';
 
 const LoadInit = () => {
   return (
     <div
+      id="loadinit"
       className="bg-blue-500"
       style={{
         position: 'absolute',

@@ -2,7 +2,7 @@
 
 import centerEverything from '../../assets/styles/centerEverything.styles';
 import svg404 from '../../assets/images/404.svg';
-import { Button } from '../../components';
+import { CustomButton } from '../../components';
 
 const NotFound = ({
   username = 'Guest user',
@@ -16,7 +16,7 @@ const NotFound = ({
         <p className="text-3xl">Sorry, {username}!</p>
         <p className="text-xl">{message}</p>
       </div>
-      <Button text="Go back" onHandleClick={() => {}} />
+      <CustomButton text="Go back" onHandleClick={() => {}} />
     </div>
   );
 };

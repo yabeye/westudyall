@@ -1,22 +1,15 @@
 import { Link } from 'react-router-dom';
 
-import welcomeSVG from '../../../assets/images/welcome.svg';
-
-export default function Header({
-  heading,
-  paragraph,
-  linkName,
-  linkUrl = '#',
-}) {
+export default function Header({ heading, imgSrc }) {
   return (
-    <div className="mb-10">
+    <div className="mb-5">
       <div className="flex justify-center">
-        <img alt="undraw" className="h-20 w-30" src={welcomeSVG} />
+        <img alt="undraw" className="h-20 w-30" src={imgSrc} />
       </div>
-      <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <h3 className="mt-6 text-center text-3xl font-medium text-gray-900">
         {heading}
-      </h2>
-      <p className="mt-2 text-center text-sm text-gray-600 mt-5">
+      </h3>
+      {/* <p className="mt-2 text-center text-sm text-gray-600 mt-5">
         {paragraph}{' '}
         <Link
           to={linkUrl}
@@ -24,7 +17,7 @@ export default function Header({
         >
           {linkName}
         </Link>
-      </p>
+      </p> */}
     </div>
   );
 }

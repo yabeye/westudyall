@@ -1,1 +1,2 @@
-export { default as Button } from './Button/Button';
+export { default as CustomButton } from './Button/CustomButton';
+export { default as FormError } from './Error/FormError';

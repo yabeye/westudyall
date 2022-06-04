@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Login, Signup } from './pages/Auth';
+import { Help, Home, LoadInit, NotFound, User } from './pages';
+import { Account, Login, Signup } from './pages/Auth';
 
 import './App.css';
-import { Home, LoadInit, NotFound, User } from './pages';
 
 function App() {
   const [isPageLoading, setIsPageLoading] = useState(false);
@@ -16,9 +16,11 @@ function App() {
         {/* routes */}
         <div>
           <Routes>
+            <Route path="/help" exact element={<Help />} />
             <Route path="/notfound" exact element={<NotFound />} />
-            <Route path="/users/signup" exact element={<Signup />} />
-            <Route path="/users/login" exact element={<Login />} />
+            <Route path="/account" exact element={<Account />} />
+            <Route path="/account/signup" exact element={<Signup />} />
+            <Route path="/account/login" exact element={<Login />} />
             <Route path="/users" exact element={<User />} />
             <Route path="/" exact element={<Home />} />
           </Routes>
