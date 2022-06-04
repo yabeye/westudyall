@@ -19,11 +19,12 @@ import { CustomButton, FormError } from '../../../components';
 
 const theme = createTheme();
 
-export default function Login() {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [credentialErrors, setCredentialErrors] = useState({
-    username: 'Please provide username!',
+  const [formErrors, setFormErrors] = useState({
+    // username: 'Please provide a username!',
+    // password: 'Please provide a password!',
   });
   const [rememberPass, setRememberPass] = useState(false);
 
@@ -75,14 +76,15 @@ export default function Login() {
               label="Username"
               name="username"
               autoComplete="username"
+              size="small"
               autoFocus
               placeholder="Enter your username here"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            {credentialErrors.username && (
-              <FormError errorMessage={credentialErrors.username} />
-            )}
+
+            <FormError errorMessage={formErrors.username} />
+
             <TextField
               margin="normal"
               required
@@ -93,17 +95,16 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
               placeholder="Enter your password here"
+              size="small"
               value={password}
               onChange={(e) => setUsername(e.target.value)}
             />
-            {credentialErrors.password && (
-              <FormError errorMessage={credentialErrors.password} />
-            )}
+
+            <FormError errorMessage={formErrors.password} />
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-              className="my-3"
             />
             <div
               className=""
@@ -134,7 +135,7 @@ export default function Login() {
             </Grid> */}
 
             <Footer
-              paragraph="Dont have an account?"
+              paragraph="Don't have an account?"
               linkName="Signup"
               linkUrl="/account/signup"
             />
@@ -143,4 +144,6 @@ export default function Login() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default Login;

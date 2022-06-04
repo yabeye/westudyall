@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,35 +12,30 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from '../components/Header';
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://westudyall.netlify.com">
-        We Study
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import welcomeSVG from '../../../assets/images/welcome.svg';
+import { CustomButton, FormError } from '../../../components';
+import Footer from '../components/Footer';
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+const Signup = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formErrors, setFormErrors] = useState({
+    firstName: 'Please provide your name.',
+  });
+
+  useEffect(() => {
+    // logic will go here
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -55,12 +50,19 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
-          </Typography>
+          </Typography> */}
+
+          <Header
+            heading="Create a new Account"
+            imgSrc={welcomeSVG}
+            isFlex={true}
+          />
+
           <Box
             component="form"
             noValidate
@@ -76,6 +78,7 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  size="small"
                   autoFocus
                 />
               </Grid>
@@ -86,9 +89,15 @@ export default function SignUp() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
+                  size="small"
                 />
               </Grid>
+
+              <div className="mx-3 my-1">
+                <FormError
+                  errorMessage={formErrors.firstName || formErrors.lastName}
+                />
+              </div>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -96,10 +105,12 @@ export default function SignUp() {
                   id="username"
                   label="Username"
                   name="username"
-                  autoComplete="email"
+                  size="small"
                 />
               </Grid>
-
+              <div className="mx-3 my-1">
+                <FormError errorMessage={formErrors.username} />
+              </div>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -108,8 +119,12 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  size="small"
                 />
               </Grid>
+              <div className="mx-3 my-1">
+                <FormError errorMessage={formErrors.email} />
+              </div>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -118,80 +133,67 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
+                  size="small"
                 />
               </Grid>
+              <div className="mx-3 my-1">
+                <FormError errorMessage={formErrors.password} />
+              </div>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirm-password"
+                  size="small"
+                />
+              </Grid>
+              <div className="mx-3 my-1">
+                <FormError errorMessage={formErrors.confirmPassword} />
+              </div>
+
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
-            <Button
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
+            </Button> */}
+            <div
+              className=""
+              style={{ display: 'flex', justifyContent: 'right' }}
+            >
+              <CustomButton text="SIGN UP" handleClick={() => {}} />
+            </div>
+            {/* <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
+            <Footer
+              paragraph="Don't have an account?"
+              linkName="Login"
+              linkUrl="/account/login"
+            />
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
-}
-// import { Header, SignupComp } from '../components';
+};
 
-// const Signup = ()=>{
-//   return
-// }
-
-// const Signup = () => {
-//   return (
-//     <div
-//       style={{
-//         position: 'absolute',
-//         top: '0',
-//         left: '0',
-//         right: '0',
-//         bottom: '0',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         alignContent: 'center',
-//       }}
-//     >
-//       <div
-//         style={{
-//           border: '3px solid white',
-//           padding: 40,
-//           borderRadius: '.8rem',
-//           backgroundColor: '#cfcfff',
-//           opacity: '0.8',
-//         }}
-//       >
-//         <Header
-//           heading="Signup to create an account"
-//           paragraph="Already have an account? "
-//           linkName="Login"
-//           linkUrl="/"
-//         />
-//         <SignupComp />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Signup;
+export default Signup;

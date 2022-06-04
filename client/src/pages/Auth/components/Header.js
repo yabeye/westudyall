@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
-export default function Header({ heading, imgSrc }) {
+export default function Header({ heading, imgSrc, isFlex = false }) {
+  const flexStyles = isFlex ? 'flex justify-between content-center' : '';
+
   return (
-    <div className="mb-5">
+    <div className={flexStyles}>
       <div className="flex justify-center">
         <img alt="undraw" className="h-20 w-30" src={imgSrc} />
       </div>
