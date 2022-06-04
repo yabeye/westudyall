@@ -67,16 +67,24 @@ router.post('/', async (req, res) => {
   // TODO: exception handling on this route
   // request validation validation
   const { body } = req;
-  let { firstName, lastName, username, email, password, profile } = body;
+  let { firstName, lastName, username, email, password } = body;
   // (to be on the safe side )
   firstName = firstName.trim();
   lastName = lastName.trim();
   username = username.trim();
   email = email.trim();
-  // ! password -> we don't trim pass because it might start with whitespace
-  profile.bio = profile.bio.trim();
-  profile.address = profile.address.trim();
-  profile.schoolName = profile.schoolName.trim();
+
+  // ! password -> we don't trim pass because it might whitespace itself can be a one password combination
+  // if (!profile || Object.keys(profile).length === 0) {
+  //   console.log('Profile is not given!');
+  //   profile = {};
+  // }
+  // profile.bio = profile.bio ? profile.bio.trim() : '';
+  // profile.address = profile.address ? profile.address.trim() : '';
+  // profile.schoolName = profile.schoolName ? profile.schoolName.trim() : '';
+
+  // return res.send('Some thing come in a mail today!');
+  // console.log('Profile', profile);
 
   const { error } = validateAccount({
     firstName,
@@ -84,7 +92,7 @@ router.post('/', async (req, res) => {
     username,
     email,
     password,
-    profile,
+    // profile,
   });
 
   if (error) {
@@ -127,7 +135,6 @@ router.post('/', async (req, res) => {
     username,
     email,
     password: hashedPassword,
-    profile,
     userId: user._id,
   });
 

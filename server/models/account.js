@@ -61,6 +61,7 @@ const accountSchema = new mongoose.Schema({
     },
     schoolName: {
       type: mongoose.Schema.Types.String,
+      default: '',
       max: 128,
     },
     currentGrade: {
@@ -111,13 +112,14 @@ function validateAccount(account) {
     symbol: 1,
     requirementCount: 4,
   };
+  // console.log('in joi', account.profile);
 
   const schema = Joi.object({
     firstName: Joi.string().max(32).required(),
     lastName: Joi.string().max(32).required(),
     username: Joi.string().max(64).required(),
     email: Joi.string().email().max(64).required(),
-    password: new JoiPC(passwordComplexityOptions),
+    password: new JoiPC(passwordComplexityOptions).required(),
     profile: Joi.object({
       bio: Joi.string().max(64),
       address: Joi.string().max(128),
