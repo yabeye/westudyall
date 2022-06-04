@@ -78,7 +78,6 @@ const accountSchema = new mongoose.Schema({
 });
 
 accountSchema.methods.generateAuthToken = function () {
-  console.log('Config pass', config.get('jwtPrivateKey'));
   const token = jwt.sign(
     {
       _id: this.id,
@@ -102,7 +101,6 @@ accountSchema.methods.generateAuthToken = function () {
 const Account = mongoose.model('Account', accountSchema);
 
 function validateAccount(account) {
-  //customerId: Joi.objectId().required(),
   const passwordComplexityOptions = {
     min: 8,
     max: 64,
@@ -112,7 +110,6 @@ function validateAccount(account) {
     symbol: 1,
     requirementCount: 4,
   };
-  // console.log('in joi', account.profile);
 
   const schema = Joi.object({
     firstName: Joi.string().max(32).required(),
