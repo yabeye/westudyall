@@ -5,14 +5,17 @@ import { makeAppStopLoading } from './isLoading.js';
 
 const { CREATE_NEW_ACCOUNT, GET_MY_ACCOUNT } = actions;
 
-export const createNewAccount = () => async (dispatch) => {
+export const createNewAccount = (accountPayload) => async (dispatch) => {
   try {
-    const { data } = await api.createNewAccountAPI();
+    console.log('Acccount Payload', accountPayload);
+    // TODO: validation is required here for accountPayload
+    const { data } = await api.createNewAccountAPI(accountPayload);
+    console.log('response', data);
     const action = { type: CREATE_NEW_ACCOUNT, payload: data.account };
     // console.log('actions createNewAccount');
     dispatch(action);
   } catch (error) {
-    console.log(error.message);
+    console.log('Err, account not created! Reason= - > ', error.message);
   }
 };
 

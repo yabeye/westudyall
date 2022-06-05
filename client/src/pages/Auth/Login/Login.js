@@ -27,7 +27,7 @@ const theme = createTheme();
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('abre');
+  const [username, setUsername] = useState('silly');
   const [password, setPassword] = useState('12ABcd#&');
   const [formErrors, setFormErrors] = useState({
     // username: 'Please provide a username!',
@@ -44,7 +44,7 @@ const Login = () => {
 
     const { error, message, token } = await loginAPI(username, password);
 
-    if (error) {
+    if (error === 'true') {
       // there is an error!
       const errorKey = (message.toLowerCase().split(' ')[0] + '').trim();
       const formErrorTemp = {};

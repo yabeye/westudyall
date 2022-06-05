@@ -13,7 +13,9 @@ export const createNewAccountAPI = async (accountPayload) => {
     const { data } = await axios.post(BACKEND_URL, accountPayload);
     return { data };
   } catch (error) {
-    console.log('Error', error.message);
+    console.log('Error herhhdlf', error.response);
+    const { data } = error.response;
+    return data;
   }
 };
 

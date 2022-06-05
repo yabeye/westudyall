@@ -41,6 +41,8 @@ function App() {
     // dispatch(getMyAccount());
   }, []);
 
+  console.log('Account in app', account);
+
   return (
     <div className="App">
       {/* Pages that don't depend by routes */}
@@ -55,8 +57,9 @@ function App() {
           <Route path="/account/signup" exact element={<Signup />} />
           <Route path="/account/login" exact element={<Login />} />
           <Route path="/users" exact element={<User />} />
-          <Route path="/questions/:id" element={<Questions />} />
+          <Route path="/questions" element={<Questions />} />
           <Route path="/" exact element={<Home account={account} />} />
+          <Route path="*" element={<Navigate to="/notfound" replace />} />
         </Routes>
       </div>
     </div>

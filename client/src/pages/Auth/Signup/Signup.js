@@ -17,10 +17,19 @@ import Header from '../components/Header';
 import welcomeSVG from '../../../assets/images/welcome.svg';
 import { CustomButton, FormError } from '../../../components';
 import Footer from '../components/Footer';
+import { createNewAccount } from '../../../services/actions/account';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createNewAccountAPI } from '../../../services/api/account.api';
 
 const theme = createTheme();
 
 const Signup = () => {
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const account = useSelector((state) => state.account);
+
   const [firstName, setFirstName] = useState('Fake');
   const [lastName, setLastName] = useState('Name');
   const [username, setUsername] = useState('silly');
@@ -35,7 +44,7 @@ const Signup = () => {
     // logic will go here
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // now lets register a user //
@@ -45,12 +54,35 @@ const Signup = () => {
     const signUpData = {
       firstName,
       lastName,
+      username,
       email,
       password,
+      confirmPassword,
     };
 
     console.log('Sign up data!', signUpData);
+
+    const result = await createNewAccountAPI(signUpData);
+
+    console.log('Result at Signup', result);
+
+    const { error, message, account } = result;
+
+    if (error === 'true') {
+      // there is a validation error.
+      const errorKey = message.toLowerCase().split(' ')[0].split('"').join('');
+
+      const formErrorTemp = {};
+      formErrorTemp[`${errorKey}`] = message.toLowerCase();
+      setFormErrors(formErrorTemp);
+      console.log('formErrorTemp', formErrorTemp);
+      return;
+    }
+
+    navigate('/account/login');
   };
+
+  console.log('In Signup', account);
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,6 +127,7 @@ const Signup = () => {
                   size="small"
                   autoFocus
                   value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -106,12 +139,13 @@ const Signup = () => {
                   name="lastName"
                   size="small"
                   value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
 
               <div className="mx-3 my-1">
                 <FormError
-                  errorMessage={formErrors.firstName || formErrors.lastName}
+                  errorMessage={formErrors.firstname || formErrors.lastname}
                 />
               </div>
               <Grid item xs={12}>
@@ -124,6 +158,7 @@ const Signup = () => {
                   size="small"
                   value={username}
                   autoComplete="new-username"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -139,6 +174,7 @@ const Signup = () => {
                   autoComplete="email"
                   size="small"
                   value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -155,6 +191,7 @@ const Signup = () => {
                   size="small"
                   value={password}
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -171,10 +208,11 @@ const Signup = () => {
                   size="small"
                   value={confirmPassword}
                   autoComplete="new-confirm-password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
               <div className="mx-3 my-1">
-                <FormError errorMessage={formErrors.confirmPassword} />
+                <FormError errorMessage={formErrors.confirmpassword} />
               </div>
 
               {/* <Grid item xs={12}>

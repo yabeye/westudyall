@@ -67,18 +67,31 @@ router.post('/', async (req, res) => {
   // TODO: exception handling on this route
   // request validation validation
   const { body } = req;
-  let { firstName, lastName, username, email, password } = body;
+  let { firstName, lastName, username, email, password, confirmPassword } =
+    body;
+
+  // checking for password confirmation
+  if (password !== confirmPassword) {
+    return res.status(StatusCodes.BAD_REQUEST).send({
+      error: 'true',
+      message: "confirmpassword don't match!",
+    });
+  }
+
   // (to be on the safe side )
-  firstName = firstName.trim();
-  lastName = lastName.trim();
-  username = username.trim();
-  email = email.trim();
+  console.log('Backend', body);
+  // Todo: check for null body value;
+  if (firstName !== undefined) firstName = firstName.trim();
+  if (lastName !== undefined) lastName = lastName.trim();
+  if (username !== undefined) username = username.trim();
+  if (email !== undefined) email = email.trim();
 
   // ! password -> we don't trim pass because it might whitespace itself can be a one password combination
   // if (!profile || Object.keys(profile).length === 0) {
   //   console.log('Profile is not given!');
   //   profile = {};
   // }
+
   // profile.bio = profile.bio ? profile.bio.trim() : '';
   // profile.address = profile.address ? profile.address.trim() : '';
   // profile.schoolName = profile.schoolName ? profile.schoolName.trim() : '';
@@ -98,7 +111,7 @@ router.post('/', async (req, res) => {
   if (error) {
     return res.status(StatusCodes.BAD_REQUEST).send({
       error: 'true',
-      details: error.details.map((detail) => detail.message),
+      message: error.details[0].message,
     });
   }
 
