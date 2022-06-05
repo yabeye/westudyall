@@ -43,7 +43,7 @@ router.get('/me', auth, async (req, res) => {
       .send({ error: true, message: "A user with a given id isn't found!" });
   }
 
-  const user = await User.find({ _id: account.userId });
+  const user = await User.findOne({ _id: account.userId });
 
   let safeAccountResponse = _.pick(account, [
     'firstName',

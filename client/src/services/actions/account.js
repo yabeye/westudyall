@@ -1,6 +1,7 @@
 import * as api from '../api/account.api.js';
 
 import actions from '../actionTypes/index.js';
+import { makeAppStopLoading } from './isLoading.js';
 
 const { CREATE_NEW_ACCOUNT, GET_MY_ACCOUNT } = actions;
 
@@ -21,6 +22,7 @@ export const getMyAccount = () => async (dispatch) => {
     const action = { type: GET_MY_ACCOUNT, payload: data.account };
     dispatch(action);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
+  //   dispatch(makeAppStopLoading());
 };

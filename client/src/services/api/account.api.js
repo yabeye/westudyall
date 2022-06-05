@@ -25,11 +25,12 @@ export const getMyAccountAPI = async () => {
     const instance = axios.create({
       baseURL: BACKEND_URL,
       headers: { 'x-auth-token': token },
+      timeout: 5000,
     });
 
-    const { data } = await instance.get('/me');
+    const result = await instance.get('/me');
 
-    return data;
+    return result;
   } catch (error) {
     console.log('Error', error);
   }

@@ -16,24 +16,50 @@ import Header from '../components/Header';
 import graduation from '../../../assets/images/graduation.svg';
 import Footer from '../components/Footer';
 import { CustomButton, FormError } from '../../../components';
+import { loginAPI } from '../../../services/api/auth.api';
+
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState('abre');
+  const [password, setPassword] = useState('12ABcd#&');
   const [formErrors, setFormErrors] = useState({
     // username: 'Please provide a username!',
     // password: 'Please provide a password!',
   });
   const [rememberPass, setRememberPass] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const credentials = { username, password };
+    // TODO: Local validation required !
+    console.log('credentials', credentials);
+
+    const { error, message, token } = await loginAPI(username, password);
+
+    if (error) {
+      // there is an error!
+      const errorKey = (message.toLowerCase().split(' ')[0] + '').trim();
+      const formErrorTemp = {};
+      formErrorTemp[`${errorKey}`] = message;
+      setFormErrors(formErrorTemp);
+      return;
+    }
+    // no error, redirect to the home page
+
+    console.log('Token is saved!', token);
+    console.log('Logging in completed!');
+    navigate('/');
   };
 
   useEffect(() => {
     // logic will go here //
+    // console.log('Form Errors', formErrors);
   }, []);
 
   return (
@@ -97,7 +123,7 @@ const Login = () => {
               placeholder="Enter your password here"
               size="small"
               value={password}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <FormError errorMessage={formErrors.password} />
@@ -116,6 +142,7 @@ const Login = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                handleSubmit={handleSubmit}
               >
                 SIGN IN
               </CustomButton>

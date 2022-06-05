@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   if (!validPassword)
     return res.status(StatusCodes.BAD_REQUEST).send({
       error: true,
-      message: 'Incorrect password.',
+      message: 'Password is incorrect',
     });
 
   const token = account.generateAuthToken();

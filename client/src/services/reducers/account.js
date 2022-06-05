@@ -7,7 +7,7 @@ export default (account = {}, action) => {
     case CREATE_NEW_ACCOUNT:
       return action.payload;
     case GET_MY_ACCOUNT:
-      return account;
+      return action.payload;
     default:
       return account;
   }

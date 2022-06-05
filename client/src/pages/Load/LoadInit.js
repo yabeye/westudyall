@@ -23,7 +23,7 @@ const LoadInit = () => {
     >
       <FaGraduationCap style={{ fontSize: 60 }} id="logo" />
 
-      <p className="text-white my-12" id="message">
+      <p className="text-white my-12 text-center" id="message">
         Just a sec ... Getting the platform ready !
       </p>
     </div>
