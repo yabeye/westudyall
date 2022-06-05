@@ -21,13 +21,14 @@ import Footer from '../components/Footer';
 const theme = createTheme();
 
 const Signup = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [firstName, setFirstName] = useState('Fake');
+  const [lastName, setLastName] = useState('Name');
+  const [username, setUsername] = useState('silly');
+  const [email, setEmail] = useState('last@gmail.com');
+  const [password, setPassword] = useState('12ABcd#&');
+  const [confirmPassword, setConfirmPassword] = useState('12ABcd#&');
   const [formErrors, setFormErrors] = useState({
-    firstName: 'Please provide your name.',
+    // firstName: 'Please provide your name.',
   });
 
   useEffect(() => {
@@ -36,6 +37,19 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // now lets register a user //
+
+    // TODO: Local validation is required!
+
+    const signUpData = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    console.log('Sign up data!', signUpData);
   };
 
   return (
@@ -80,6 +94,7 @@ const Signup = () => {
                   label="First Name"
                   size="small"
                   autoFocus
+                  value={firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -90,6 +105,7 @@ const Signup = () => {
                   label="Last Name"
                   name="lastName"
                   size="small"
+                  value={lastName}
                 />
               </Grid>
 
@@ -106,6 +122,8 @@ const Signup = () => {
                   label="Username"
                   name="username"
                   size="small"
+                  value={username}
+                  autoComplete="new-username"
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -120,6 +138,7 @@ const Signup = () => {
                   name="email"
                   autoComplete="email"
                   size="small"
+                  value={email}
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -134,6 +153,8 @@ const Signup = () => {
                   type="password"
                   id="password"
                   size="small"
+                  value={password}
+                  autoComplete="new-password"
                 />
               </Grid>
               <div className="mx-3 my-1">
@@ -148,6 +169,8 @@ const Signup = () => {
                   type="password"
                   id="confirm-password"
                   size="small"
+                  value={confirmPassword}
+                  autoComplete="new-confirm-password"
                 />
               </Grid>
               <div className="mx-3 my-1">

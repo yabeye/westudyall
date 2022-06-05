@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getToken } from '../../../services/api/auth.api';
+import { getToken } from '../../services/api/auth.api';
 
-import './Account.css';
-const Account = () => {
+const Questions = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     if (getToken() === null) navigate('/account/login');
   }, []);
 
-  return <div>Account, Page!</div>;
+  return <p>Questions</p>;
 };
 
-export default Account;
+export default Questions;

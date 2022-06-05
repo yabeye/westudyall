@@ -32,6 +32,8 @@ export const getMyAccountAPI = async () => {
 
     return result;
   } catch (error) {
-    console.log('Error', error);
+    const data = error.response;
+    console.log('Error', data);
+    return data;
   }
 };

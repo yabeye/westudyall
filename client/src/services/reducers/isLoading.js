@@ -9,6 +9,6 @@ export default (isLoading = true, action) => {
     case APP_NOT_LOADING:
       return false;
     default:
-      return false;
+      return true;
   }
 };

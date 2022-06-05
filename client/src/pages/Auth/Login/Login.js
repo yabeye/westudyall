@@ -20,6 +20,8 @@ import { loginAPI } from '../../../services/api/auth.api';
 
 import { useNavigate } from 'react-router-dom';
 
+import { getToken } from '../../../services/api/auth.api';
+
 const theme = createTheme();
 
 const Login = () => {
@@ -58,8 +60,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // logic will go here //
-    // console.log('Form Errors', formErrors);
+    if (getToken()) navigate('/');
   }, []);
 
   return (
