@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 // proper import statements
 
 import centerEverything from '../../assets/styles/centerEverything.styles';
@@ -17,7 +18,7 @@ const NotFound = ({
 
   useEffect(() => {
     if (getToken() === null) navigate('/account/login');
-  }, []);
+  }, [navigate]);
 
   return (
     <div style={centerEverything}>

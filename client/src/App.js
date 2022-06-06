@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -39,7 +40,7 @@ function App() {
     dispatch(getMyAccount());
 
     // dispatch(getMyAccount());
-  }, []);
+  }, [dispatch]);
 
   console.log('Account in app', account);
 
