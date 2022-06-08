@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
+<<<<<<< Updated upstream
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+=======
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+>>>>>>> Stashed changes
 
 import { Help, Home, LoadInit, NotFound, Questions, User } from './pages';
 import { Account, Login, Signup } from './pages/Auth';
