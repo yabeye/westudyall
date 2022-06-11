@@ -16,6 +16,8 @@ import {
   makeAppLoading,
   makeAppStopLoading,
 } from './services/actions/isLoading';
+import { LeftBar, Navbar, RightBar } from './components';
+import { Grid } from '@mui/material';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +51,11 @@ function App() {
       {/* {isLoading && <LoadInit />} */}
 
       {/* routes */}
-      <div>
+
+      <Navbar />
+
+      <div className="flex justify-between" style={{ width: '100%' }}>
+        <LeftBar />
         <Routes>
           <Route path="/help" exact element={<Help />} />
           <Route path="/notfound" exact element={<NotFound />} />
@@ -61,6 +67,7 @@ function App() {
           <Route path="/" exact element={<Home account={account} />} />
           <Route path="*" element={<Navigate to="/notfound" replace />} />
         </Routes>
+        <RightBar />
       </div>
     </div>
   );

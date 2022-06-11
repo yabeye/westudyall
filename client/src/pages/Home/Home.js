@@ -28,7 +28,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="w-fit">
       <p>{account.firstName}</p>
       <p>{account.lastName}</p>
     </div>
