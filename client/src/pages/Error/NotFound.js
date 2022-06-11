@@ -17,7 +17,7 @@ const NotFound = ({
 
   useEffect(() => {
     if (getToken() === null) navigate('/account/login');
-  }, []);
+  }, [navigate]);
 
   return (
     <div style={centerEverything}>

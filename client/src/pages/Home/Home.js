@@ -18,7 +18,7 @@ const Home = () => {
     //   console.log('re route to login');
 
     if (getToken() === null) navigate('/account/login');
-  }, []);
+  }, [navigate]);
 
   // console.log('account', account);
 

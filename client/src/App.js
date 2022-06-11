@@ -41,7 +41,7 @@ function App() {
     dispatch(getMyAccount());
 
     // dispatch(getMyAccount());
-  }, []);
+  }, [dispatch]);
 
   console.log('Account in app', account);
 
