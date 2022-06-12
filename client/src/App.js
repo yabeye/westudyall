@@ -17,9 +17,20 @@ import {
   makeAppStopLoading,
 } from './services/actions/isLoading';
 import { LeftBar, Navbar, RightBar } from './components';
-import { Grid } from '@mui/material';
+
+import { Grid, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  right: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,21 +65,27 @@ function App() {
 
       <Navbar />
 
-      <div className="flex justify-between" style={{ width: '100%' }}>
-        <LeftBar />
-        <Routes>
-          <Route path="/help" exact element={<Help />} />
-          <Route path="/notfound" exact element={<NotFound />} />
-          <Route path="/account" exact element={<Account />} />
-          <Route path="/account/signup" exact element={<Signup />} />
-          <Route path="/account/login" exact element={<Login />} />
-          <Route path="/users" exact element={<User />} />
-          <Route path="/questions" element={<Questions />} />
-          <Route path="/" exact element={<Home account={account} />} />
-          <Route path="*" element={<Navigate to="/notfound" replace />} />
-        </Routes>
-        <RightBar />
-      </div>
+      <Grid container justifyContent="center">
+        <Grid item sm={2} xs={2}>
+          <LeftBar />
+        </Grid>
+        <Grid item sm={7} xs={10}>
+          <Routes>
+            <Route path="/help" exact element={<Help />} />
+            <Route path="/notfound" exact element={<NotFound />} />
+            <Route path="/account" exact element={<Account />} />
+            <Route path="/account/signup" exact element={<Signup />} />
+            <Route path="/account/login" exact element={<Login />} />
+            <Route path="/users" exact element={<User />} />
+            <Route path="/questions" element={<Questions />} />
+            <Route path="/" exact element={<Home account={account} />} />
+            <Route path="*" element={<Navigate to="/notfound" replace />} />
+          </Routes>
+        </Grid>
+        <Grid item sm={3} className="">
+          <RightBar className={classes.right} />
+        </Grid>
+      </Grid>
     </div>
   );
 }

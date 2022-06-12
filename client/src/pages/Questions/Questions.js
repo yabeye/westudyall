@@ -8,6 +8,9 @@ const Questions = () => {
 
   useEffect(() => {
     if (getToken() === null) navigate('/account/login');
+    // else load all questions from the db.
+    // or get it from the state.
+    // but the safe side is to load while this component renders
   }, []);
 
   return <p>Questions</p>;

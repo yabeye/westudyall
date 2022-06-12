@@ -28,7 +28,76 @@ const Home = () => {
   }
 
   return (
-    <div className="w-fit">
+    <div className="">
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
+      <p>{account.firstName}</p>
+      <p>{account.lastName}</p>
       <p>{account.firstName}</p>
       <p>{account.lastName}</p>
     </div>
