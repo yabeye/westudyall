@@ -22,11 +22,7 @@ import avator from '../../assets/images/avator.jpg';
 import madingo from '../../assets/images/madingo.jpg';
 import yh from '../../assets/images/yh.jpg';
 
-import {
-  kPrimaryColorMain,
-  kPrimaryColorFade,
-  kSecondaryColorMain,
-} from '../../services/constants/colors';
+import { kSecondaryColorMain } from '../../services/constants/colors';
 
 const useStyles = makeStyles((theme) => ({
   container: {

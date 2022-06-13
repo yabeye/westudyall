@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     [theme.breakpoints.up('sm')]: {
       marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(2),
     },
   },
   text: {
@@ -64,11 +65,11 @@ const useStyles = makeStyles((theme) => ({
 function LeftBar() {
   const classes = useStyles();
 
-  const [currentTab, setCurrentTab] = useState('All');
+  const [currentTab, setCurrentTab] = useState('Questions');
 
   const leftBarItems = [
     {
-      name: 'All',
+      name: 'Questions',
       to: '/questions',
       iconComponent: <BsViewList className={classes.icon} />,
     },
@@ -141,86 +142,3 @@ function LeftBar() {
 }
 
 export default LeftBar;
-
-// import { AiOutlineClose } from 'react-icons/ai';
-
-// const LeftBar = () => {
-//   const parts = [
-//     { name: 'Home', to: '/', others: [] },
-//     {
-//       name: 'Resources',
-//       to: '/',
-//       others: [
-//         { name: '1', to: '/' },
-//         { name: '2', to: '/' },
-//         { name: '3', to: '/' },
-//       ],
-//     },
-//     { name: 'Help', to: '/', others: [] },
-//   ];
-
-//   return (
-//     <div
-//       className="fixed w-24 bg-slate-400"
-//       style={{ height: '100vh', top: 0 }}
-//     >
-//       <div className="absolute inset-y-0 left-0 w-16">
-//         <aside className="w-56" aria-label="Sidebar">
-//           <div
-//             className="overflow-y-auto py-4 px-3 bg-blue-500 rounded dark:bg-gray-800"
-//             style={{ height: '100vh' }}
-//           >
-//             {/* <div className="flex justify-end text-white text-xl">
-//               <AiOutlineClose style={{}} />
-//             </div> */}
-
-//             <ul className="space-y-2">
-//               {parts.map((part) => (
-//                 <li key={part.name}>
-//                   <button
-//                     type="button"
-//                     className="flex items-center p-2 w-full text-base font-normal text-white rounded-lg transition duration-75 group hover:bg-gray-100 hover:text-blue-500  dark:text-white dark:hover:bg-gray-700"
-//                   >
-//                     <span
-//                       className="flex-1 ml-3 text-left whitespace-nowrap"
-//                       sidebar-toggle-item=""
-//                     >
-//                       {part.name}
-//                     </span>
-//                     {/* <svg
-//                       sidebar-toggle-item=""
-//                       className="w-6 h-6"
-//                       fill="currentColor"
-//                       viewBox="0 0 20 20"
-//                       xmlns="http://www.w3.org/2000/svg"
-//                     >
-//                       <path
-//                         fillRule="evenodd"
-//                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-//                         clipRule="evenodd"
-//                       ></path>
-//                     </svg> */}
-//                   </button>
-//                   <ul id="dropdown-example" className="py-2 space-y-2">
-//                     {part.others.map((other) => (
-//                       <li key={other.name}>
-//                         <a
-//                           href="#"
-//                           className="flex items-center p-2 pl-11 w-full text-base font-normal text-white rounded-lg transition duration-75 group hover:bg-gray-100 hover:text-blue-500 dark:text-white dark:hover:bg-gray-700"
-//                         >
-//                           {other.name}
-//                         </a>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         </aside>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LeftBar;
