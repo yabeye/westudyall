@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 function LeftBar() {
   const classes = useStyles();
 
-  const [currentTab, setCurrentTab] = useState('Questions');
+  const [currentTab, setCurrentTab] = useState(0);
 
   const leftBarItems = [
     {
@@ -81,22 +81,27 @@ function LeftBar() {
     },
     {
       name: 'Natural Science',
-      to: 'questions/nat',
+      to: 'tags/natural',
       iconComponent: <BiAtom className={classes.icon} />,
     },
     {
       name: 'Social Science',
-      to: 'questions/soc',
+      to: 'tags/social',
       iconComponent: <VscLaw className={classes.icon} />,
     },
     {
       name: 'Others',
-      to: 'questions/others',
+      to: 'tags/others',
       iconComponent: <TbMessageLanguage className={classes.icon} />,
     },
     {
       name: 'Users',
       to: '/users',
+      iconComponent: <RiUserSearchLine className={classes.icon} />,
+    },
+    {
+      name: 'Account',
+      to: '/account',
       iconComponent: <RiUserSearchLine className={classes.icon} />,
     },
   ];
@@ -120,16 +125,17 @@ function LeftBar() {
         <div
           style={{
             borderRadius: '5px',
-            color: item.name === currentTab ? `#fff` : '',
-            backgroundColor:
-              item.name === currentTab ? `${kPrimaryColorMain}` : '',
+            color: index === currentTab ? `#fff` : '',
+            backgroundColor: index === currentTab ? `${kPrimaryColorMain}` : '',
           }}
+          key={index}
         >
           <Link to={item.to}>
             <div
               className={classes.items}
               style={{ padding: '10px 0px' }}
               key={index}
+              onClick={() => setCurrentTab(index)}
             >
               <div>{item.iconComponent}</div>
               <Typography className={classes.text}>{item.name}</Typography>

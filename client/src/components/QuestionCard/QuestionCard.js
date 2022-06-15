@@ -9,34 +9,42 @@ import {
 
 import madingo from '../../assets/images/madingo.jpg';
 
-const QuestionCard = () => {
+const QuestionCard = ({ displayToolTip = true }) => {
   const tags = ['cell', 'biology', 'crista'];
   return (
     <Link to="/questions/277sdsdfas47asd">
-      <div className="hover:scale-105 hover:cursor-pointer">
-        <div
-          style={{
-            width: '25%',
-            backgroundColor: '#f4f4f5',
-          }}
-        >
-          <Typography
-            className="px-1 py-1"
+      <div
+        className={`${
+          displayToolTip ? 'hover:scale-105 hover:cursor-pointer' : ''
+        }`}
+      >
+        {displayToolTip && (
+          <div
             style={{
-              backgroundColor: kNaturalScienceColor,
-              color: '#fff',
+              width: '25%',
+              backgroundColor: '#f4f4f5',
             }}
           >
-            Biology, Natural Science
-          </Typography>
-        </div>
+            <Typography
+              className="px-1 py-1"
+              style={{
+                backgroundColor: kNaturalScienceColor,
+                color: '#fff',
+                borderRadius: '5px 5px 0 0',
+              }}
+            >
+              Biology, Natural Science
+            </Typography>
+          </div>
+        )}
+
         <div
           className="flex flex-row mb-10 py-3"
           style={{
             border: '1px solid #ccc',
             color: kMainTextColor,
             backgroundColor: '#f4f4f5',
-            borderRadius: 5,
+            borderRadius: '0 5px 5px 5px',
             width: '100%',
           }}
         >

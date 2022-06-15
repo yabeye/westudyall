@@ -18,7 +18,7 @@ import { AvatarGroup } from '@material-ui/lab';
 import { useEffect, useState } from 'react';
 // import { getFrindsImages } from '../static/images/fakePosts';
 
-import avator from '../../assets/images/avator.jpg';
+// import avator from '../../assets/images/avator.jpg';
 import madingo from '../../assets/images/madingo.jpg';
 import yh from '../../assets/images/yh.jpg';
 

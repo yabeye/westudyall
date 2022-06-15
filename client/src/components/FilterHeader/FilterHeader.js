@@ -2,6 +2,8 @@ import { Typography } from '@material-ui/core';
 import { useState } from 'react';
 import CustomButton from '../Button/CustomButton';
 
+import { useNavigate } from 'react-router-dom';
+
 import {
   kMainTextColor,
   kNaturalScienceColor,
@@ -27,11 +29,14 @@ const FilterHeader = () => {
     { name: 'Others', bgColor: kOthersColor, count: 325 },
   ];
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex justify-between align-middle">
         <Typography variant="h4">All Questions</Typography>
-        <CustomButton text="Ask " handleClick={() => {}} />
+
+        <CustomButton text="Ask " handleClick={() => navigate('/ask')} />
       </div>
 
       <div className="flex justify-center align-middle">

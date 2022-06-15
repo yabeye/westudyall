@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { Help, Home, LoadInit, NotFound, Questions, User } from './pages';
+import {
+  Answer,
+  Ask,
+  Help,
+  Home,
+  LoadInit,
+  NotFound,
+  Questions,
+  Tags,
+  User,
+} from './pages';
 import { Account, Login, Signup } from './pages/Auth';
 
 import './App.css';
@@ -19,6 +29,7 @@ import {
 import { LeftBar, Navbar, RightBar } from './components';
 
 import { Grid, makeStyles } from '@material-ui/core';
+import Stream from './components/Stream/Stream';
 
 const useStyles = makeStyles((theme) => ({
   right: {
@@ -77,8 +88,61 @@ function App() {
             <Route path="/account/signup" exact element={<Signup />} />
             <Route path="/account/login" exact element={<Login />} />
             <Route path="/users" exact element={<User />} />
+            <Route path="/ask" exact element={<Ask />} />
+
+            <Route
+              path="/tags/natural"
+              exact
+              element={
+                <Stream
+                  title="Natural Science"
+                  description="natural Science is a study of ..."
+                  tags={[
+                    { name: 'Biology', count: 0 },
+                    { name: 'Chemistery', count: 0 },
+                    { name: 'Physics', count: 0 },
+                    { name: 'Mats(N)', count: 0 },
+                  ]}
+                />
+              }
+            />
+            <Route
+              path="/tags/social"
+              exact
+              element={
+                <Stream
+                  title="Social Science"
+                  description="Social Science is a study of ..."
+                  tags={[
+                    { name: 'Economics', count: 0 },
+                    { name: 'Business', count: 0 },
+                    { name: 'History', count: 0 },
+                    { name: 'Civics', count: 0 },
+                    { name: 'Mats(S)', count: 0 },
+                  ]}
+                />
+              }
+            />
+            <Route
+              path="/tags/others"
+              exact
+              element={
+                <Stream
+                  title="Others"
+                  description="Includes subjects that are ..."
+                  tags={[
+                    { name: 'English', count: 0 },
+                    { name: 'Amharic', count: 0 },
+                    { name: 'Technical Drawing', count: 0 },
+                    { name: 'Physical Education', count: 0 },
+                  ]}
+                />
+              }
+            />
+            <Route path="/tags" exact element={<Tags />} />
+            <Route path="/questions/:id" element={<Answer />} />
             <Route path="/questions" element={<Questions />} />
-            <Route path="/" exact element={<Home account={account} />} />
+            <Route path="/" exact element={<Questions />} />
             <Route path="*" element={<Navigate to="/notfound" replace />} />
           </Routes>
         </Grid>
