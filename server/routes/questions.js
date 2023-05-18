@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import _ from 'lodash';
 
 import { ModelQuestions } from '../models/index.js';
-import { validateObjectId } from '../middlewares/index.js';
+import { validateObjectId } from '../middleware/middleware.js';
 
 import QUESTION_CONSTANTS from '../constants/question.js';
 
